@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Drop Shadow Stack -->
+    <item>
+        <shape>
+            <gradient
+            android:angle="360"
+            android:endColor="#555252"
+            android:startColor="#DCD8D8" />
+            <solid
+
+                />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+</layer-list>
