@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="12">
+
+
+
+
+            <LinearLayout
+                android:layout_margin="0.5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1.3"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/id_date_du_jour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="12/05/2021"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+                <EditText
+                    android:id="@+id/id_etape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:hint="en cours"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1.5"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/id_detail_pop_objectif"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="programmation en C sous linux programmation en C sous linux programmation en C sous linux"
+                    android:gravity="center"
+                    android:background="#23C8C5C5"
+                    android:inputType="textLongMessage|text"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="0.5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1.3"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <EditText
+                    android:id="@+id/id_time_prevu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="02:30:00"
+                    android:inputType="text"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:id="@+id/id_time_ecoule"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="00:30:00"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/id_time_restant"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="02:00:00"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="0.5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1.3"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/id_date_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="12/05/2021"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+                <EditText
+                    android:id="@+id/id_date_fin_prevu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:hint="20/04/2021"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+            </LinearLayout>
+
+                <!--
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="5">
+                <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                  android:id="@+id/id_calendar"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                    android:layout_weight="5.5"
+                   app:compactCalendarTextSize="12sp"
+                   app:compactCalendarBackgroundColor="#97EAF3F6"
+                   app:compactCalendarTextColor="#7E7A7A"
+                   app:compactCalendarCurrentSelectedDayBackgroundColor="#7C5C6BF8"
+                   app:compactCalendarCurrentDayBackgroundColor="#85F85959"
+                   app:compactCalendarMultiEventIndicatorColor="#fff"/>
+                   </LinearLayout>
+                   -->
+
+            <CalendarView
+                    android:id="@+id/id_calendar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5.5"
+                    app:compactCalendarTextSize="12sp"
+                    app:compactCalendarBackgroundColor="#97EAF3F6"
+                    app:compactCalendarTextColor="#7E7A7A"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="#7C5C6BF8"
+                    app:compactCalendarCurrentDayBackgroundColor="#85F85959"
+                    app:compactCalendarMultiEventIndicatorColor="#fff"
+                    />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <Button
+                    android:id="@+id/update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:text="Modifer"
+                    android:textColor="@color/white"
+                    app:backgroundTint="#DD7C857C" />
+
+
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:text="Supprimer"
+                    android:textColor="@color/white"
+                    app:backgroundTint="#DDFD0808" />
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

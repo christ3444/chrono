@@ -1,6 +1,5 @@
-package com.example.chrono;
+package com.example.chrono.View;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
@@ -14,10 +13,14 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.chrono.Controller.MyDatabaseHelper;
+import com.example.chrono.R;
 
 import java.util.Locale;
 
@@ -25,6 +28,7 @@ import java.util.Locale;
 public class Timer extends AppCompatActivity {
     private long Start_Time; //= 600000;
     public  String time_left_txt;
+    public  String tache_id;
     public TextView text_time, objectif_txt;
     public CountDownTimer ctdTime;
     public  Boolean timeRun=false;
@@ -32,7 +36,7 @@ public class Timer extends AppCompatActivity {
     private Button start,reset;
     private NotificationManager mNotificationManager;
     public MediaPlayer bip;
-
+    MyDatabaseHelper mydata ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,16 +52,20 @@ public class Timer extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        mydata  = new MyDatabaseHelper(Timer.this);
         if(bundle.getString("objectif")!= null)
         {
             objectif_txt.setText(bundle.getString("objectif"));
         }
+        if(bundle.getString("tache_id")!= null)
+        {
+           tache_id= bundle.getString("tache_id");
+        }
 
         if(bundle.getString("time")!= null)
         {
-              time_left=Long.valueOf(bundle.getString("time"))*3600000;
-            //time_left=5000;
-            Toast.makeText(Timer.this,bundle.getString("time"),Toast.LENGTH_LONG).show();
+              time_left=Long.valueOf(bundle.getString("time"));
+                // time_left=Long.valueOf(bundle.getString("time"))*3600000;
         }
 
         start.setOnClickListener(new View.OnClickListener(){
@@ -71,6 +79,7 @@ public class Timer extends AppCompatActivity {
                 }else {
                     startTimer();
                     text_time.setTextColor(getResources().getColor(R.color.white));
+                    startBroadcastTimer(v);
                    }
             }
         });
@@ -87,11 +96,13 @@ public class Timer extends AppCompatActivity {
         });
             updatecountTxt();
     }
+
     public void startTimer(){
         ctdTime = new CountDownTimer(time_left,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 time_left = millisUntilFinished;
+                mydata.UpdateRemainTime(tache_id,time_left);
                 updatecountTxt();
 
             }
@@ -114,6 +125,7 @@ public class Timer extends AppCompatActivity {
     public void pauseTimer(){
         ctdTime.cancel();
         timeRun = false;
+        mydata.UpdateRemainTime(tache_id,time_left);
         start.setText("Start");
         reset.setVisibility(View.VISIBLE);
     }
@@ -123,8 +135,9 @@ public class Timer extends AppCompatActivity {
 
         if(bundle.getString("time")!= null)
         {
-            time_left=Long.valueOf(bundle.getString("time"))*3600000;
-            Toast.makeText(Timer.this,bundle.getString("time"),Toast.LENGTH_LONG).show();
+            time_left=Long.valueOf(bundle.getString("time"));
+            mydata.UpdateRemainTime(tache_id,time_left);
+           // Toast.makeText(Timer.this,bundle.getString("time"),Toast.LENGTH_LONG).show();
         }
 
         updatecountTxt();
@@ -186,5 +199,18 @@ public class Timer extends AppCompatActivity {
 
     }
 
+
+    public void startBroadcastTimer(View v){
+
+        Intent intent = new Intent(this,Timer.class);
+        intent.setAction("BackgroundProcess");
+        intent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        sendBroadcast(intent);
+
+        //PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+        //AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,0,10,pendingIntent);
+
+    }
 
 }

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.chrono">
+
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -9,11 +13,11 @@
         android:roundIcon="@drawable/ic_chrono"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chrono">
-        <activity android:name=".Objectif"
+        <activity android:name=".View.Objectif"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".Splash"
+            android:name=".View.Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +26,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Timer"
+            android:name=".View.Timer"
             android:screenOrientation="portrait" />
+
+        <receiver android:name=".Controller.BroadcastTimer"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="BackgroundProcess"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

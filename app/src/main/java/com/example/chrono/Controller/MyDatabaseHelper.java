@@ -1,4 +1,4 @@
-package com.example.chrono;
+package com.example.chrono.Controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-class MyDatabaseHelper extends SQLiteOpenHelper {
+public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME="chrono_new.db";
@@ -19,6 +19,12 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID="_id";
     private static final String COLUMN_OBJECTIF="Objectif";
     private static final String COLUMN_TIME="Time";
+    private static final String COLUMN_TIME_ECOULE="Time_Ecoule";
+    private static final String COLUMN_TIME_RESTANT="Time_Restant";
+    private static final String COLUMN_DAT_PREVU="La_Date_Prevu";
+    private static final String COLUMN_DAT_FIN="La_Date_Fin";
+    private static final String COLUMN_ETAPE="Etape";
+    private static final String COLUMN_DAT_INTERVENTION="La_Date_Intervention";
     private static final String COLUMN_DAT="La_Date";
 
 
@@ -36,6 +42,12 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 COLUMN_OBJECTIF+ " TEXT, "+
                 COLUMN_TIME+ " INTEGER,"+
+                COLUMN_TIME_ECOULE+ " INTEGER,"+
+                COLUMN_TIME_RESTANT+ " INTEGER,"+
+                COLUMN_DAT_PREVU+ " VARCHAR,"+
+                COLUMN_DAT_FIN+ " VARCHAR,"+
+                COLUMN_ETAPE+ " VARCHAR,"+
+                COLUMN_DAT_INTERVENTION+ " VARCHAR,"+
                 COLUMN_DAT+ " VARCHAR);";
         db.execSQL(query);
     }
@@ -46,12 +58,18 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addBook(String objectif,int time,String la_date){
+    public void addBook(String objectif, Long time,String la_date_prevu, String la_date){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues cv= new ContentValues();
 
         cv.put(COLUMN_OBJECTIF,objectif);
         cv.put(COLUMN_TIME,time);
+        cv.put(COLUMN_TIME_ECOULE,0);
+        cv.put(COLUMN_TIME_RESTANT,time);
+        cv.put(COLUMN_DAT_PREVU,la_date_prevu);
+        cv.put(COLUMN_DAT_FIN,"-");
+        cv.put(COLUMN_ETAPE,"en attente");
+        cv.put(COLUMN_DAT_INTERVENTION,la_date);
         cv.put(COLUMN_DAT,la_date);
 
         long result = db.insert(TABLE_NAME,null,cv);
@@ -63,7 +81,8 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
-    Cursor readAllData(){
+
+    public Cursor readAllData(){
         String query= "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db= this.getReadableDatabase();
 
@@ -74,4 +93,34 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         return  cursor;
 
     }
+
+    public void UpdateRemainTime(String id, Long time){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues cv= new ContentValues();
+
+        cv.put(COLUMN_TIME,time);
+
+        long result = db.update(TABLE_NAME,cv,"_id=?",new String[]{id});
+        if(result == -1){
+            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+        }else{
+           // Toast.makeText(context,"Added Successfully !",Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
+    public void delete_tache(String id){
+        SQLiteDatabase db= this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME,"_id=?",new String[]{id});
+        if(result == -1){
+            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+        }else{
+             Toast.makeText(context,"Suppression reussie !",Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
+
 }
