@@ -14,11 +14,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chrono.Controller.BroadcastTimer;
 import com.example.chrono.Controller.MyDatabaseHelper;
 import com.example.chrono.R;
 
@@ -202,15 +204,17 @@ public class Timer extends AppCompatActivity {
 
     public void startBroadcastTimer(View v){
 
-        Intent intent = new Intent(this,Timer.class);
+        Intent intent = new Intent(this, BroadcastTimer.class);
         intent.setAction("BackgroundProcess");
         intent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         sendBroadcast(intent);
-
-        //PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
-        //AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,0,10,pendingIntent);
-
+        Log.d("#####################","START BROADCAST METHODE #########################################" +
+                "########################################################################" +
+                "########################################################################" +
+                "########################################################################" +
+                "########################################################################" +
+                "########################################################################" +
+                "######################################################################");
     }
 
 }
