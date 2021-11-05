@@ -8,14 +8,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_chrono"
+        android:icon="@drawable/bg_c"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_chrono"
+        android:roundIcon="@drawable/bg_c"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chrono">
+
         <activity android:name=".View.Objectif"
             android:screenOrientation="portrait"
+            android:label=""
             />
+
         <activity
             android:name=".View.Splash"
             android:screenOrientation="portrait">

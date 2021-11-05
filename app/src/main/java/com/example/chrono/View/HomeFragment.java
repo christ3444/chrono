@@ -5,36 +5,33 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.chrono.Controller.MyDatabaseHelper;
-import com.example.chrono.Model.CustomAdapter;
+import com.example.chrono.Controller.*;
+import com.example.chrono.Model.*;
 import com.example.chrono.R;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Objectif extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link HomeFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class HomeFragment extends Fragment {
 
-    private Toolbar toolbar;
     public AlertDialog.Builder dialogBuilder;
     public AlertDialog dialog;
     private Button pop_cancel, pop_save;
@@ -45,151 +42,109 @@ public class Objectif extends AppCompatActivity {
     MyDatabaseHelper mydata;
     ArrayList<String> tache_id,tache_objectif,tache_time,la_date;
 
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment HomeFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
 
-        setContentView(R.layout.activity_objectif);
+    }
 
-         final DrawerLayout drawerLayout = findViewById(R.id.drawerlayout);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        //add_btn = view.findViewById(R.id.add_btn);
+        recyclerView= view.findViewById(R.id.recycler);
 
-        findViewById(R.id.btn_navigation_menu).setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+
+
+
+        /* add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                pop_add();
             }
-        });
-
-       // add_btn = findViewById(R.id.add_btn);
-        // recyclerView= findViewById(R.id.recycler);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        btn_navigation = findViewById(R.id.btn_navigation);
-
-
-        btn_navigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
-        btn_navigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_chrono));
-        btn_navigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_calendar));
-        btn_navigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_history));
-        btn_navigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_add));
-
-        btn_navigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
-            @Override
-            public void onShowItem(MeowBottomNavigation.Model item) {
-
-                Fragment fragment = null;
-
-                switch (item.getId()){
-
-                    case 1:
-                        fragment= new HomeFragment();
-                        break;
-                    case 4:
-                        fragment= new historyFragment();
-                        break;
-                    case 5:
-                        fragment= new AddFragment();
-                        break;
-                }
-                loadFragment(fragment);
-
-            }
-        });
-
-
-        btn_navigation.show(1,true);
-
-        btn_navigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(getApplicationContext(),"vous avez clickez" + item.getId(),Toast.LENGTH_LONG).show();
-            }
-        });
-        btn_navigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
-
-                Toast.makeText(getApplicationContext(),"reset" + item.getId(),Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-
-               /* add_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        pop_add();
-                    }
-                });
+        }); */
 
         recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Objectif.this, Timer.class );
+                Intent intent = new Intent(getContext(), Timer.class );
                 startActivity(intent);
             }
         });
 
-        mydata= new MyDatabaseHelper(Objectif.this);
+        mydata= new MyDatabaseHelper(getContext());
         tache_id= new ArrayList<>();
         tache_objectif= new ArrayList<>();
         tache_time= new ArrayList<>();
         la_date= new ArrayList<>();
 
         stroreDataInArray();
-        customAdapter= new CustomAdapter(Objectif.this,tache_id,tache_objectif,tache_time,la_date);
+        customAdapter= new CustomAdapter(getContext(),tache_id,tache_objectif,tache_time,la_date);
         recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Objectif.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         // CustomAdapter customAdapter = new CustomAdapter(Objectif.this,"1","java","100","12/03/2021","99h","14/03/3021");
-        customAdapter = new CustomAdapter(Objectif.this,tache_id,tache_objectif,tache_time,la_date);
+        customAdapter = new CustomAdapter(getContext(),tache_id,tache_objectif,tache_time,la_date);
         recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Objectif.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-*/
+        return view;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.appbarmenu,menu);
-        MenuItem menuItem = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("recherche");
-        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(Objectif.this,query,Toast.LENGTH_SHORT).show();
-                searchView.clearFocus();
-                return true;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        };
-         searchView.setOnQueryTextListener(queryTextListener);
 
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    private void loadFragment(Fragment fragment){
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frame_layout, fragment)
-                .commit();
-    }
 
     public void pop_add(){
 
         TextView objectif_txt;
-               EditText nb_heure_txt, nb_minute_txt, date_butoire;
+        EditText nb_heure_txt, nb_minute_txt, date_butoire;
 
-        dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder = new AlertDialog.Builder(getContext());
         final View pop_add_view= getLayoutInflater().inflate(R.layout.add_popup,null);
         pop_cancel= pop_add_view.findViewById(R.id.save2);
         pop_save= pop_add_view.findViewById(R.id.save);
@@ -218,7 +173,7 @@ public class Objectif extends AppCompatActivity {
                             Long.valueOf(nb_minute_txt.getText().toString())*60000;
                 }else{
                     if(!nb_minute_txt.getText().toString().equals("")){
-                    all_Time= Long.valueOf(nb_minute_txt.getText().toString())*60000;}
+                        all_Time= Long.valueOf(nb_minute_txt.getText().toString())*60000;}
                     else{
                         if (!nb_heure_txt.getText().toString().equals("")){
                             all_Time= Long.valueOf(nb_heure_txt.getText().toString())*3600000;
@@ -238,25 +193,25 @@ public class Objectif extends AppCompatActivity {
                 }else{date_butoire_save=date_butoire.getText().toString();}
                 /// code save
 
-                MyDatabaseHelper mydata  = new MyDatabaseHelper(Objectif.this);
+                MyDatabaseHelper mydata  = new MyDatabaseHelper(getContext());
                 mydata.addBook(objectif_save,all_Time,date_butoire_save,la_date.trim() );
-                Intent reload = new Intent(Objectif.this, Objectif.class);
+                Intent reload = new Intent(getContext(), Objectif.class);
                 startActivity(reload);
                 dialog.dismiss();
                 // Intent intent= new Intent(Objectif.this, Timer.class);
-               // startActivity(intent);
+                // startActivity(intent);
             }
         });
     }
 
 
-    public void pop_detail(Context ct,String _dtache_id){
+    public void pop_detail(Context ct, String _dtache_id){
 
         Button pop_update,pop_delete;
         dialogBuilder = new AlertDialog.Builder(ct);
         LayoutInflater li = (LayoutInflater) ct.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View pop_detail_view= li.inflate(R.layout.detail_popup,null);
-                //.getLayoutInflater().inflate(R.layout.detail_popup,null);
+        //.getLayoutInflater().inflate(R.layout.detail_popup,null);
         pop_update= pop_detail_view.findViewById(R.id.update);
         pop_delete= pop_detail_view.findViewById(R.id.delete);
 
@@ -286,10 +241,10 @@ public class Objectif extends AppCompatActivity {
     }
 
     void stroreDataInArray(){
-        MyDatabaseHelper mydata  = new MyDatabaseHelper(Objectif.this);
+        MyDatabaseHelper mydata  = new MyDatabaseHelper(getContext());
         Cursor cursor= mydata.readAllData();
         if(cursor.getCount() == 0){
-            Toast.makeText(this,"no Data !",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"no Data !",Toast.LENGTH_SHORT).show();
         }else{
             while(cursor.moveToNext()){
                 tache_id.add(cursor.getString(0));
@@ -301,5 +256,8 @@ public class Objectif extends AppCompatActivity {
         }
     }
 
+    public void hello(Context context){
+        Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
+    }
 
 }

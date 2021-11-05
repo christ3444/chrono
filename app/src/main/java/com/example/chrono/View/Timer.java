@@ -1,8 +1,5 @@
 package com.example.chrono.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,15 +10,15 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chrono.Controller.BroadcastTimer;
-import com.example.chrono.Controller.MyDatabaseHelper;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import com.example.chrono.Controller.*;
 import com.example.chrono.R;
 
 import java.util.Locale;
@@ -81,7 +78,7 @@ public class Timer extends AppCompatActivity {
                 }else {
                     startTimer();
                     text_time.setTextColor(getResources().getColor(R.color.white));
-                    startBroadcastTimer(v);
+                  //  startBroadcastTimer(v);
                    }
             }
         });

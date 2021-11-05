@@ -3,17 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/christ/AndroidStudioProjects/chrono/app/src/main/res/layout/add_popup.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/christ/AndroidStudioProjects/chrono/app/src/main/res/layout/detail_popup.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/christ/AndroidStudioProjects/chrono/app/src/main/res/layout/my_row.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_objectif.xml" value="0.17255434782608695" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/add_popup.xml" value="0.1" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/appbar.xml" value="0.18" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_add.xml" value="0.1" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_history.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/my_row.xml" value="0.33" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/menu/appbarmenu.xml" value="0.1" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

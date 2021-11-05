@@ -85,6 +85,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                // objectif.hello(context);
                 String delete_id = String.valueOf(tache_id.get(position));
                 objectif.pop_detail(context,delete_id);
+                Intent timer_intent = new Intent(view.getContext(), Objectif.class);
+                context.startActivity(timer_intent);
+
                 //Toast.makeText(context, delete_id, Toast.LENGTH_SHORT).show();
                 return true;
             }
