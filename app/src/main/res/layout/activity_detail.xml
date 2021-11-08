@@ -12,26 +12,24 @@
 
 
 
-
      <LinearLayout
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="2"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/id_detail_pop_objectif"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="programmation en C sous linux programmation en C sous linux programmation en C sous linux"
             android:textStyle="bold"
             android:textSize="15dp"
             android:gravity="center"
             android:inputType="textMultiLine"
             android:textColorHint="@color/gray_text_color"
             android:textColor="@color/gray_text_color"
-
             />
     </LinearLayout>
 
@@ -161,38 +159,41 @@
 
      </LinearLayout>
 
-        <!--
-        <LinearLayout
+    <!--
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="5">
+
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+              android:id="@+id/id_calendar"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               app:compactCalendarTextSize="12sp"
+               app:compactCalendarBackgroundColor="@color/bg_leger_gray"
+               app:compactCalendarTextColor="@color/gray_text_color"
+               app:compactCalendarCurrentSelectedDayBackgroundColor="#fff"
+               app:compactCalendarCurrentDayBackgroundColor="#fff"
+               app:compactCalendarMultiEventIndicatorColor="#fff"/>
+
+
+               </LinearLayout>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
+        android:background="#43FFFFFF"
         android:layout_weight="5">
-        <com.github.sundeepk.compactcalendarview.CompactCalendarView
-          android:id="@+id/id_calendar"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-            android:layout_weight="5.5"
-           app:compactCalendarTextSize="12sp"
-           app:compactCalendarBackgroundColor="#97EAF3F6"
-           app:compactCalendarTextColor="#7E7A7A"
-           app:compactCalendarCurrentSelectedDayBackgroundColor="#7C5C6BF8"
-           app:compactCalendarCurrentDayBackgroundColor="#85F85959"
-           app:compactCalendarMultiEventIndicatorColor="#fff"/>
-           </LinearLayout>
-           -->
 
-     <CalendarView
+        <CalendarView
             android:id="@+id/id_calendar"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5.5"
-            app:compactCalendarTextSize="12sp"
-            app:compactCalendarBackgroundColor="@color/bg_leger_gray"
-            app:compactCalendarTextColor="@color/gray_text_color"
-            app:compactCalendarCurrentSelectedDayBackgroundColor="#7C5C6BF8"
-            app:compactCalendarCurrentDayBackgroundColor="#85F85959"
-            app:compactCalendarMultiEventIndicatorColor="#fff" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
+    </LinearLayout>
 
 
      <LinearLayout
@@ -205,10 +206,10 @@
 
             <Button
                 android:id="@+id/update"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="4dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="Modifer"
                 android:padding="10dp"
                 android:gravity="center"
@@ -221,10 +222,10 @@
 
             <Button
                 android:id="@+id/delete"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="4dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="Supprimer"
                 android:padding="5dp"
                 android:drawableRight="@drawable/ic_delete"

@@ -74,22 +74,26 @@ public class Objectif extends AppCompatActivity {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
 
-                Fragment fragment = null;
+                if(item.getId()==5) {
+                    Intent intent = new Intent(Objectif.this, AddActivity.class);
+                    startActivity(intent);
+                } else{
+                    Fragment fragment = null;
 
-                switch (item.getId()){
+                    switch (item.getId()) {
 
-                    case 1:
-                        fragment= new HomeFragment();
-                        break;
-                    case 4:
-                        fragment= new historyFragment();
-                        break;
-                    case 5:
-                        fragment= new AddFragment();
-                        break;
+                        case 1:
+                            fragment = new HomeFragment();
+                            break;
+                        case 4:
+                            fragment = new historyFragment();
+                            break;
+                        case 55:
+                            fragment = new AddFragment();
+                            break;
+                    }
+                    loadFragment(fragment);
                 }
-                loadFragment(fragment);
-
             }
         });
 

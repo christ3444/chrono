@@ -79,9 +79,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     context.startActivity(timer_intent);
             }
         });
-        holder.my_recycler_objectif.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.tache.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
                 Objectif objectif = new Objectif();
                // objectif.hello(context);
                 String delete_id = String.valueOf(tache_id.get(position));
@@ -90,7 +90,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 Intent detail_intent = new Intent(view.getContext(), DetailActivity.class);
                 detail_intent.putExtra("tache_id",String.valueOf(tache_id.get(position)));
                 context.startActivity(detail_intent);
-                return true;
+
             }
         });
     }
