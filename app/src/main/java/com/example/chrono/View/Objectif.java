@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,10 +23,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.chrono.Controller.MyDatabaseHelper;
+import com.example.chrono.Controller.*;
 import com.example.chrono.Model.CustomAdapter;
 import com.example.chrono.R;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,7 +50,7 @@ public class Objectif extends AppCompatActivity {
 
         setContentView(R.layout.activity_objectif);
 
-         final DrawerLayout drawerLayout = findViewById(R.id.drawerlayout);
+        final DrawerLayout drawerLayout = findViewById(R.id.drawerlayout);
 
         findViewById(R.id.btn_navigation_menu).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +59,6 @@ public class Objectif extends AppCompatActivity {
             }
         });
 
-       // add_btn = findViewById(R.id.add_btn);
-        // recyclerView= findViewById(R.id.recycler);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         btn_navigation = findViewById(R.id.btn_navigation);
@@ -97,58 +93,23 @@ public class Objectif extends AppCompatActivity {
             }
         });
 
-
         btn_navigation.show(1,true);
 
         btn_navigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(getApplicationContext(),"vous avez clickez" + item.getId(),Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(),"vous avez clickez" + item.getId(),Toast.LENGTH_LONG).show();
             }
         });
         btn_navigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
 
-                Toast.makeText(getApplicationContext(),"reset" + item.getId(),Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(),"reset" + item.getId(),Toast.LENGTH_LONG).show();
 
             }
         });
 
-
-               /* add_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        pop_add();
-                    }
-                });
-
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Objectif.this, Timer.class );
-                startActivity(intent);
-            }
-        });
-
-        mydata= new MyDatabaseHelper(Objectif.this);
-        tache_id= new ArrayList<>();
-        tache_objectif= new ArrayList<>();
-        tache_time= new ArrayList<>();
-        la_date= new ArrayList<>();
-
-        stroreDataInArray();
-        customAdapter= new CustomAdapter(Objectif.this,tache_id,tache_objectif,tache_time,la_date);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Objectif.this));
-
-
-        // CustomAdapter customAdapter = new CustomAdapter(Objectif.this,"1","java","100","12/03/2021","99h","14/03/3021");
-        customAdapter = new CustomAdapter(Objectif.this,tache_id,tache_objectif,tache_time,la_date);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Objectif.this));
-
-*/
     }
 
     @Override
@@ -176,7 +137,7 @@ public class Objectif extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void loadFragment(Fragment fragment){
+    public void loadFragment(Fragment fragment){
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -187,7 +148,7 @@ public class Objectif extends AppCompatActivity {
     public void pop_add(){
 
         TextView objectif_txt;
-               EditText nb_heure_txt, nb_minute_txt, date_butoire;
+        EditText nb_heure_txt, nb_minute_txt, date_butoire;
 
         dialogBuilder = new AlertDialog.Builder(this);
         final View pop_add_view= getLayoutInflater().inflate(R.layout.add_popup,null);
@@ -271,6 +232,9 @@ public class Objectif extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                // Intent reload_intent = new Intent(Objectif.this, Objectif.class);
+               // startActivity(reload_intent);
+              // finish();
             }
         });
 
@@ -281,6 +245,8 @@ public class Objectif extends AppCompatActivity {
                 MyDatabaseHelper mydata  = new MyDatabaseHelper(ct);
                 mydata.delete_tache(id_for_delete);
                 dialog.dismiss();
+
+
             }
         });
     }
@@ -300,6 +266,5 @@ public class Objectif extends AppCompatActivity {
             }
         }
     }
-
 
 }

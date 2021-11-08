@@ -13,6 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navigation_menu"
+        android:background="#000000"
+        app:headerLayout="@layout/header_menu"
+        app:menu="@menu/main_menu"
+        app:itemTextColor="@color/gray_text_color"
+        app:itemIconTint="@color/gray_text_color"
         android:layout_gravity="start"
         />
 
@@ -33,9 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_navigation"
-            app:mbn_circleColor="@color/white"
+            app:mbn_circleColor="#D6D6D6"
             app:mbn_selectedIconColor="@color/black"
-            app:mbn_defaultIconColor="@color/white"
+            app:mbn_defaultIconColor="@color/gray_text_color"
             app:mbn_backgroundBottomColor="@color/black"
             />
 

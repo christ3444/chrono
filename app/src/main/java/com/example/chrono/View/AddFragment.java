@@ -11,7 +11,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.chrono.Controller.*;
+import com.example.chrono.Controller.MyDatabaseHelper;
 import com.example.chrono.R;
 
 import java.util.Date;
@@ -22,9 +22,15 @@ import java.util.Date;
  * create an instance of this fragment.
  */
 public class AddFragment extends Fragment {
+
     public AlertDialog.Builder dialogBuilder;
     public AlertDialog dialog;
     private Button pop_cancel, pop_save;
+    EditText objectif_txt;
+    EditText nb_heure_txt, nb_minute_txt, date_butoire;
+    View view;
+
+
     Button add_btn;
     MyDatabaseHelper mydata;
 
@@ -51,6 +57,8 @@ public class AddFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static AddFragment newInstance(String param1, String param2) {
+
+
         AddFragment fragment = new AddFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -59,6 +67,7 @@ public class AddFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,21 +75,17 @@ public class AddFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
 
+    }
+    //setContentView(R.layout.activity_main);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_add, container, false);
+        view =  inflater.inflate(R.layout.fragment_add, container, false);
 
 
-        EditText objectif_txt;
-        EditText nb_heure_txt, nb_minute_txt, date_butoire;
-        Button pop_save, pop_cancel;
-
-
-        pop_cancel= view.findViewById(R.id.save2);
+       // pop_cancel= view.findViewById(R.id.save2);
         pop_save= view.findViewById(R.id.save);
         objectif_txt = view.findViewById(R.id.objectif);
         nb_heure_txt = view.findViewById(R.id.editTextTime);
@@ -104,6 +109,7 @@ public class AddFragment extends Fragment {
                         else{all_Time=Long.valueOf(0); }
                     }
                 }
+
                 String date_butoire_save ,objectif_save;
                 if(objectif_txt.getText().toString().trim().equals("")){
                     objectif_save="non defini";
@@ -121,13 +127,34 @@ public class AddFragment extends Fragment {
                 Intent reload = new Intent(getContext(), Objectif.class);
                 startActivity(reload);
 
-                //dialog.dismiss();
-                // Intent intent= new Intent(Objectif.this, Timer.class);
-                // startActivity(intent);
             }
         });
+
+        /* pop_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent reload = new Intent(getContext(), Objectif.class);
+                startActivity(reload);
+            }
+        });*/
 
         return  view;
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

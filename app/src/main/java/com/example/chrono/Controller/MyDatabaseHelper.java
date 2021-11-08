@@ -28,8 +28,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DAT="La_Date";
 
 
-
-
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context= context;
@@ -119,6 +117,18 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
              Toast.makeText(context,"Suppression reussie !",Toast.LENGTH_SHORT).show();
 
         }
+
+    }
+
+    public Cursor searchData( String data){
+        String query= "SELECT * FROM " + TABLE_NAME +" WHERE " + COLUMN_OBJECTIF + " LIKE %" + data + "%" ;
+        SQLiteDatabase db= this.getReadableDatabase();
+
+        Cursor cursor= null;
+        if(db!= null){
+            cursor= db.rawQuery(query, null);
+        }
+        return  cursor;
 
     }
 

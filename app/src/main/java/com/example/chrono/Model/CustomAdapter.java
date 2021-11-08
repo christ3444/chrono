@@ -1,5 +1,6 @@
 package com.example.chrono.Model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chrono.R;
+import com.example.chrono.View.DetailActivity;
 import com.example.chrono.View.Objectif;
 import com.example.chrono.View.Timer;
 
@@ -55,7 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.tache.setText(String.valueOf(tache.get(position)));
         holder.last_dat.setText(String.valueOf(last_date.get(position)));
@@ -84,11 +85,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 Objectif objectif = new Objectif();
                // objectif.hello(context);
                 String delete_id = String.valueOf(tache_id.get(position));
-                objectif.pop_detail(context,delete_id);
-                Intent timer_intent = new Intent(view.getContext(), Objectif.class);
-                context.startActivity(timer_intent);
+                //objectif.pop_detail(context,delete_id);
 
-                //Toast.makeText(context, delete_id, Toast.LENGTH_SHORT).show();
+                Intent detail_intent = new Intent(view.getContext(), DetailActivity.class);
+                detail_intent.putExtra("tache_id",String.valueOf(tache_id.get(position)));
+                context.startActivity(detail_intent);
                 return true;
             }
         });

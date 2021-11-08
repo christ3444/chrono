@@ -18,6 +18,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:padding="1dp">
 
             <TextView
@@ -39,8 +41,8 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/textsha"
-                android:backgroundTint="#4065747E"
+                android:background="@drawable/ronder_bg"
+                android:backgroundTint="#0F486980"
                 android:gravity="center"
                 android:text="12h:00:00"
                 android:textColor="#AAA5A5"
@@ -58,8 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
+                android:textSize="10dp"
                 android:text="13/03/2021"
-                android:textColor="#AAA5A5"
+                android:textColor="#DCDCDC"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.003"
