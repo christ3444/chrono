@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.applandeo.materialcalendarview.CalendarView;
 import com.example.chrono.R;
 
 /**
@@ -60,6 +61,10 @@ public class historyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false);
+        View view =  inflater.inflate(R.layout.fragment_history, container, false);
+        CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
+        //calendarView.setHeaderColor([android.R.color.black]);
+
+        return view;
     }
 }

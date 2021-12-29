@@ -16,6 +16,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION=2;
 
     private static final String TABLE_NAME="my_library_db";
+
     private static final String COLUMN_ID="_id";
     private static final String COLUMN_OBJECTIF="Objectif";
     private static final String COLUMN_TIME="Time";
@@ -81,7 +82,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor readAllData(){
-        String query= "SELECT * FROM " + TABLE_NAME;
+
+        String query= "SELECT * FROM " + TABLE_NAME +" ORDER BY _id DESC";
         SQLiteDatabase db= this.getReadableDatabase();
 
         Cursor cursor= null;
@@ -117,6 +119,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
              Toast.makeText(context,"Suppression reussie !",Toast.LENGTH_SHORT).show();
 
         }
+
+    }
+
+
+    public Cursor detail_one_tache(String id){
+
+        String query= "SELECT * FROM " + TABLE_NAME + " WHERE _id=" +id;
+        SQLiteDatabase db= this.getReadableDatabase();
+
+        Cursor cursor= null;
+        if(db!= null){
+            cursor= db.rawQuery(query, null);
+        }
+        return  cursor;
 
     }
 

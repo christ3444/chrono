@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -26,17 +28,19 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.chrono.Controller.*;
 import com.example.chrono.Model.CustomAdapter;
 import com.example.chrono.R;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Objectif extends AppCompatActivity {
+public class Objectif extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     public AlertDialog.Builder dialogBuilder;
     public AlertDialog dialog;
     private Button pop_cancel, pop_save;
     MeowBottomNavigation btn_navigation;
+    NavigationView navigationView;
     Button add_btn;
     RecyclerView recyclerView;
     CustomAdapter customAdapter;
@@ -47,8 +51,9 @@ public class Objectif extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_objectif);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawerlayout);
 
@@ -63,21 +68,25 @@ public class Objectif extends AppCompatActivity {
         setSupportActionBar(toolbar);
         btn_navigation = findViewById(R.id.btn_navigation);
 
+        navigationView = findViewById(R.id.navigation_menu);
+
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
 
         btn_navigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
         btn_navigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_chrono));
         btn_navigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_calendar));
-        btn_navigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_history));
-        btn_navigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_add));
+        btn_navigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_bar_chart));
+        //btn_navigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_add));
 
         btn_navigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
 
-                if(item.getId()==5) {
+               /* if(item.getId()==5) {
                     Intent intent = new Intent(Objectif.this, AddActivity.class);
                     startActivity(intent);
-                } else{
+                } else{ */
                     Fragment fragment = null;
 
                     switch (item.getId()) {
@@ -88,13 +97,13 @@ public class Objectif extends AppCompatActivity {
                         case 4:
                             fragment = new historyFragment();
                             break;
-                        case 55:
+                     /* case 5:
                             fragment = new AddFragment();
-                            break;
+                            break;*/
                     }
                     loadFragment(fragment);
                 }
-            }
+           // }
         });
 
         btn_navigation.show(1,true);
@@ -113,6 +122,9 @@ public class Objectif extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 
@@ -269,6 +281,26 @@ public class Objectif extends AppCompatActivity {
 
             }
         }
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.add:
+                Intent intent_home = new Intent(Objectif.this, AddActivity.class);
+                startActivity(intent_home);
+                break;
+
+            case R.id.home:
+                Toast.makeText(this,"home",Toast.LENGTH_LONG).show();
+                break;
+        }
+
+
+        return true;
     }
 
 }

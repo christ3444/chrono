@@ -9,13 +9,9 @@
             android:icon="@drawable/ic_home">
         </item>
 
-        <item android:id="@+id/buy"
-            android:title="Buy"
-            android:icon="@drawable/ic_alert">
-        </item>
-        <item android:id="@+id/send"
-            android:title="Send"
-            android:icon="@drawable/ic_send">
+        <item android:id="@+id/add"
+            android:title="Nouvelle tache"
+            android:icon="@drawable/ic_add">
         </item>
 
         <item android:id="@+id/help"

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,7 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.my_row,parent,false);
+        View view = inflater.inflate(R.layout.my_row2,parent,false);
 
         return  new MyViewHolder(view);
     }
@@ -69,7 +70,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         String time_left_txt = String.format(Locale.getDefault(),"%02dh:%02dm:%02ds",heure, minutes,second);
         holder.time.setText(time_left_txt);
 
-        holder.my_recycler_objectif.setOnClickListener(new View.OnClickListener() {
+       // holder.my_recycler_objectif.setOnClickListener(new View.OnClickListener() {
+        holder.tache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                     Intent timer_intent = new Intent(v.getContext(), Timer.class);
@@ -79,7 +81,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     context.startActivity(timer_intent);
             }
         });
-        holder.tache.setOnClickListener(new View.OnClickListener() {
+        holder.time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent timer_intent = new Intent(v.getContext(), Timer.class);
+                timer_intent.putExtra("tache_id",String.valueOf(tache_id.get(position)));
+                timer_intent.putExtra("time",String.valueOf(remain_time.get(position)));
+                timer_intent.putExtra("objectif",String.valueOf(tache.get(position)));
+                context.startActivity(timer_intent);
+            }
+        });
+        holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Objectif objectif = new Objectif();
@@ -103,13 +115,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
          TextView tache_id,tache, last_dat,time;
+         ImageView more;
         LinearLayout my_recycler_objectif;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             tache= itemView.findViewById(R.id.objectif);
             last_dat = itemView.findViewById(R.id.last_dat);
             time = itemView.findViewById(R.id.time);
+            more = itemView.findViewById(R.id.options);
             my_recycler_objectif = (LinearLayout)itemView.findViewById(R.id.recycler_objectif);
         }
     }
