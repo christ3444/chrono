@@ -1,33 +1,46 @@
 package com.example.chrono.View;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.chrono.Controller.*;
 import com.example.chrono.Model.CustomAdapter;
-import com.example.chrono.Controller.MyDatabaseHelper;
 import com.example.chrono.R;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Objectif extends AppCompatActivity {
+public class Objectif extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Toolbar toolbar;
     public AlertDialog.Builder dialogBuilder;
     public AlertDialog dialog;
     private Button pop_cancel, pop_save;
+    MeowBottomNavigation btn_navigation;
+    NavigationView navigationView;
     Button add_btn;
     RecyclerView recyclerView;
     CustomAdapter customAdapter;
@@ -39,49 +52,119 @@ public class Objectif extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_objectif);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        add_btn = findViewById(R.id.add_btn);
-        recyclerView= findViewById(R.id.recycler);
 
-        add_btn.setOnClickListener(new View.OnClickListener() {
+        final DrawerLayout drawerLayout = findViewById(R.id.drawerlayout);
+
+        findViewById(R.id.btn_navigation_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pop_add();
+                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
 
-        recyclerView.setOnClickListener(new View.OnClickListener() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        btn_navigation = findViewById(R.id.btn_navigation);
+
+        navigationView = findViewById(R.id.navigation_menu);
+
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+
+        btn_navigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
+        btn_navigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_chrono));
+        btn_navigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_calendar));
+        btn_navigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_bar_chart));
+        //btn_navigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_add));
+
+        btn_navigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Objectif.this, Timer.class );
-                startActivity(intent);
+            public void onShowItem(MeowBottomNavigation.Model item) {
+
+               /* if(item.getId()==5) {
+                    Intent intent = new Intent(Objectif.this, AddActivity.class);
+                    startActivity(intent);
+                } else{ */
+                    Fragment fragment = null;
+
+                    switch (item.getId()) {
+
+                        case 1:
+                            fragment = new HomeFragment();
+                            break;
+                        case 4:
+                            fragment = new historyFragment();
+                            break;
+                     /* case 5:
+                            fragment = new AddFragment();
+                            break;*/
+                    }
+                    loadFragment(fragment);
+                }
+           // }
+        });
+
+        btn_navigation.show(1,true);
+
+        btn_navigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+               // Toast.makeText(getApplicationContext(),"vous avez clickez" + item.getId(),Toast.LENGTH_LONG).show();
+            }
+        });
+        btn_navigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+
+               // Toast.makeText(getApplicationContext(),"reset" + item.getId(),Toast.LENGTH_LONG).show();
+
             }
         });
 
-        mydata= new MyDatabaseHelper(Objectif.this);
-        tache_id= new ArrayList<>();
-        tache_objectif= new ArrayList<>();
-        tache_time= new ArrayList<>();
-        la_date= new ArrayList<>();
-
-        stroreDataInArray();
-        customAdapter= new CustomAdapter(Objectif.this,tache_id,tache_objectif,tache_time,la_date);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Objectif.this));
 
 
-        // CustomAdapter customAdapter = new CustomAdapter(Objectif.this,"1","java","100","12/03/2021","99h","14/03/3021");
-        customAdapter = new CustomAdapter(Objectif.this,tache_id,tache_objectif,tache_time,la_date);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Objectif.this));
 
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.appbarmenu,menu);
+        MenuItem menuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("recherche");
+        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(Objectif.this,query,Toast.LENGTH_SHORT).show();
+                searchView.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        };
+         searchView.setOnQueryTextListener(queryTextListener);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void loadFragment(Fragment fragment){
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout, fragment)
+                .commit();
     }
 
     public void pop_add(){
 
         TextView objectif_txt;
-               EditText nb_heure_txt, nb_minute_txt, date_butoire;
+        EditText nb_heure_txt, nb_minute_txt, date_butoire;
 
         dialogBuilder = new AlertDialog.Builder(this);
         final View pop_add_view= getLayoutInflater().inflate(R.layout.add_popup,null);
@@ -165,6 +248,9 @@ public class Objectif extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                // Intent reload_intent = new Intent(Objectif.this, Objectif.class);
+               // startActivity(reload_intent);
+              // finish();
             }
         });
 
@@ -175,6 +261,8 @@ public class Objectif extends AppCompatActivity {
                 MyDatabaseHelper mydata  = new MyDatabaseHelper(ct);
                 mydata.delete_tache(id_for_delete);
                 dialog.dismiss();
+
+
             }
         });
     }
@@ -195,8 +283,24 @@ public class Objectif extends AppCompatActivity {
         }
     }
 
-    public void hello(Context context){
-        Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.add:
+                Intent intent_home = new Intent(Objectif.this, AddActivity.class);
+                startActivity(intent_home);
+                break;
+
+            case R.id.home:
+                Toast.makeText(this,"home",Toast.LENGTH_LONG).show();
+                break;
+        }
+
+
+        return true;
     }
 
 }

@@ -19,16 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+           <!-- <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_timer" />
+                app:srcCompat="@drawable/ic_timer" />-->
 
-            <TextView
+           <!-- <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.508" />
+                app:layout_constraintVertical_bias="0.508" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
@@ -49,18 +49,20 @@
         android:id="@+id/text"
         android:layout_width="190dp"
         android:layout_height="190dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/ronder_bg"
         android:fontFamily="sans-serif-black"
-        android:textColor="@color/white"
-        android:background="@drawable/textsha"
-        app:backgroundTint="#DD101010"
-        android:text="00:00:00"
-        android:textSize="40sp"
         android:gravity="center"
-        android:layout_margin="10dp"
+        android:text="00:00:00"
+        android:textColor="@color/gray_text_color"
+        android:textSize="40sp"
+        app:backgroundTint="@color/bg_leger_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -74,26 +76,28 @@
         <Button
             android:id="@+id/start"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_weight="1"
-            android:background="@drawable/shadow"
+            android:background="@drawable/ronder_bg"
             android:elevation="10dp"
             android:text="Start"
-            app:backgroundTint="#DD101010"
+            android:textColor="@color/gray_text_color"
+            app:backgroundTint="@color/bg_leger_gray"
             tools:visibility="visible" />
 
         <Button
             android:id="@+id/reset"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_below="@+id/text"
             android:layout_marginStart="11dp"
             android:layout_weight="1"
-            android:background="@drawable/shadow"
+            android:background="@drawable/ronder_bg"
             android:elevation="10dp"
             android:text="Reset"
-            app:backgroundTint="#DD101010"
+            android:textColor="@color/gray_text_color"
+            app:backgroundTint="@color/bg_leger_gray"
             tools:visibility="visible" />
     </LinearLayout>
 
@@ -102,13 +106,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/text"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
-        android:text="Java" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif"
+        android:text="Java"
+        android:textColor="@color/gray_text_color"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
