@@ -106,13 +106,13 @@ public class DetailActivity extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
 
 
-                String[] items1 = cursor.getString(5).split("-");
+                String[] items1 = cursor.getString(5).trim().split("-");
                 String dd = items1[0];
                 String month = items1[1];
                 String year = items1[2];
-                calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dd));
-                calendar.set(Calendar.MONTH, Integer.parseInt(month) - 1);
-                calendar.set(Calendar.YEAR, Integer.parseInt(year));
+                calendar.set( Calendar.DAY_OF_MONTH, Integer.parseInt(dd) );
+                calendar.set( Calendar.MONTH, Integer.parseInt(month) - 1);
+                calendar.set( Calendar.YEAR, Integer.parseInt(year));
                 events.add(new EventDay(calendar, R.drawable.dot));
 
                 // Toast.makeText(getApplicationContext(),dd+"-"+month+"-"+year,Toast.LENGTH_LONG).show();

@@ -149,4 +149,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public void updateThis(String id, Long time){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues cv= new ContentValues();
+
+        cv.put(COLUMN_TIME,time);
+
+        long result = db.update(TABLE_NAME,cv,"_id=?",new String[]{id});
+        if(result == -1){
+            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+        }else{
+            // Toast.makeText(context,"Added Successfully !",Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
+
+
 }
