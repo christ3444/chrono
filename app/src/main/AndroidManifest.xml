@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chrono">
         <activity
+            android:name=".View.StatActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.AddActivity"
             android:exported="false" />
         <activity
