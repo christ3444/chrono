@@ -103,7 +103,7 @@ public class Objectif extends AppCompatActivity implements NavigationView.OnNavi
                             break;
                         case 4:
                             fragment = new historyFragment();
-                            layout_title.setText("Historique");
+                            layout_title.setText("Historiques");
                             break;
                      /* case 5:
                             fragment = new AddFragment();
