@@ -39,6 +39,7 @@ public class Objectif extends AppCompatActivity implements NavigationView.OnNavi
     public AlertDialog.Builder dialogBuilder;
     public AlertDialog dialog;
     private Button pop_cancel, pop_save;
+    TextView layout_title;
     MeowBottomNavigation btn_navigation;
     NavigationView navigationView;
     Button add_btn;
@@ -66,6 +67,7 @@ public class Objectif extends AppCompatActivity implements NavigationView.OnNavi
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        layout_title = findViewById(R.id.id_layout_title);
         btn_navigation = findViewById(R.id.btn_navigation);
 
         navigationView = findViewById(R.id.navigation_menu);
@@ -93,9 +95,15 @@ public class Objectif extends AppCompatActivity implements NavigationView.OnNavi
 
                         case 1:
                             fragment = new HomeFragment();
+                            layout_title.setText("Home");
+                            break;
+                        case 3:
+                            fragment = new CalendarFragment();
+                            layout_title.setText("Calendar");
                             break;
                         case 4:
                             fragment = new historyFragment();
+                            layout_title.setText("Historique");
                             break;
                      /* case 5:
                             fragment = new AddFragment();

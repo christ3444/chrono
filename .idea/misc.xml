@@ -6,6 +6,8 @@
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable-v24/sha.xml" value="0.2203125" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable-v24/textsha.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable/ic_delete.xml" value="0.1171875" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable/ic_menu.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable/ic_menu_b.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable/input_ronder.xml" value="0.2203125" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable/rond_input.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable/ronder_bg.xml" value="0.11302083333333333" />
@@ -13,12 +15,14 @@
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_add.xml" value="0.25" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_objectif.xml" value="0.17255434782608695" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_objectif.xml" value="0.67" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_stat.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/add_popup.xml" value="0.1" />
-        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/appbar.xml" value="0.18" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/appbar.xml" value="0.22" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/detail_popup.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_add.xml" value="0.22" />
+        <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_calendar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_history.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/layout/header_menu.xml" value="0.25" />
