@@ -103,7 +103,11 @@ public class Objectif extends AppCompatActivity implements NavigationView.OnNavi
                             break;
                         case 4:
                             fragment = new historyFragment();
+<<<<<<< HEAD
                             layout_title.setText("Historique");
+=======
+                            layout_title.setText("Historiques");
+>>>>>>> 276dec617156d0fb22622fa9a10f7efdfd9fa61b
                             break;
                      /* case 5:
                             fragment = new AddFragment();
@@ -131,8 +135,7 @@ public class Objectif extends AppCompatActivity implements NavigationView.OnNavi
             }
         });
 
-
-
+        
 
     }
 
