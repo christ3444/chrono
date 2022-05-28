@@ -110,7 +110,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="52dp"
         android:fontFamily="sans-serif"
         android:text="Java"
         android:textColor="@color/gray_text_color"

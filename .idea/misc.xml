@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_main.xml" value="0.13043478260869565" />
+        <entry key="..\:/Users/christ/AndroidStudioProjects/chrono/app/src/main/res/layout/activity_objectif.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/christ/AndroidStudioProjects/chrono/app/src/main/res/layout/detail_popup.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/christ/AndroidStudioProjects/chrono/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable-v24/sha.xml" value="0.2203125" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable-v24/textsha.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/dev-christ/AndroidStudioProjects/chrono/app/src/main/res/drawable/ic_delete.xml" value="0.1171875" />
